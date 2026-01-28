@@ -1,4 +1,4 @@
-/* VariableAmbienteW.c */
+/* variable.c - Windows */
 #include <stdio.h>
 #include <Windows.h>
 

@@ -9,7 +9,6 @@ main(int argc, char *argv[]) {
 
   lpvEnvironment = GetEnvironmentStrings();
 
-
   if (lpvEnvironment) {
 
     for (lpszVar = lpvEnvironment;
