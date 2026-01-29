@@ -1,6 +1,14 @@
 # Sistemas Operativos - Taller 01 - El mundo según C, C++ y otros
 
+## Agenda
+
+1. Instalación de las herramientas básicas para el curso
+2. Repositorio y estructura de los talleres
+3. El mundo según C, C++ y otros
+
 ## Instalación de las herramientas básicas para el curso
+
+Tenga en cuenta su sistema operativo e instale las herramientas correspondientes. La idea es utilizar ambos sistemas, en Windows podemos tener ambos instalados, el Windows mismo y a través del subsistema de Windows para Linux (WSL). En Linux y en Mac se recomienda, si su máquina tiene el poder (procesado con múltiples núcleos y bastante memoria) instale una máquina virtual (VirtualBox) con Windows, en ese caso es mejor utilizar otra máquina.
 
 ### Windows
 
@@ -35,7 +43,7 @@ Algunos tutoriales sobre estos editores (Por Dios que sepan seleccionar el mejor
 Instalar algunas herramientas adicionales:
 
 ```bash
-sudo apt install git golang meld tree ssh tmux wget curl cmake
+sudo apt install git golang meld tree ssh tmux wget curl cmake zip unzip
 ```
 
 * Para instalar [Rush](https://www.digitalocean.com/community/tutorials/install-rust-on-ubuntu-linux).
@@ -58,7 +66,7 @@ Se recomienza el uso de UCRT64.
 Instalar otros paquetes:
 
 ```bash
-pacman -S git tmux tree nano vim emacs wget curl cmake 
+pacman -S git tmux tree nano vim emacs wget curl cmake unzip zip
 pacman -S mingw-w64-ucrt-x86_64-go
 pacman -S --needed mingw-w64-ucrt-x86_64-rust
 ```
@@ -76,9 +84,34 @@ Recomiendo tener una terminal ([`iTerm2` ](https://iterm2.com/)) mucho más pode
 Ahora instalar las herramienta que se van a utilizar.
 
 ```bash
-brew install git nano vim tmux tree emacs gcc make cmake gdb 
+brew install git nano vim tmux tree emacs gcc make cmake gdb unzip zip git wget go rustup
 brew install --cask meld
+rustup-init
 ```
+
+#### Advertencia
+
+La nuevas versiones de Max OS X han decidido cambiar utilizar por omisión como interpretador de comandos `zsh`, en este curso vamos a utilizar `bash` en vez de `zsh`.
+
+Verifique que **shell** se esta utilizando:
+
+```bash 
+echo $SHELL
+```
+
+Si quiere cambiar de forma definitiva:
+
+```
+chsh -s /bin/bash
+```
+
+Si solo quieres cambiar temporalmente:
+
+```bash
+bash
+```
+
+Recuerde que vamos a utilizar solamente **`bash`**, en los ejemplos del curso.
 
 ### Linux
 
@@ -95,7 +128,7 @@ Eliga la distribución que más le guste, la siguiente es una lista corta de vlo
 ```bash
 sudo apt update
 sudo apt install build-essential gdb
-sudo apt install wget curl tmux make cmake meld tree nano vim emacs
+sudo apt install wget curl tmux make cmake meld tree nano vim emacs unzip zip git wget curl
 ```
 
 #### Herramientas `.rpm` 
@@ -103,10 +136,89 @@ sudo apt install wget curl tmux make cmake meld tree nano vim emacs
 ```bash
 sudo dnf update
 sudo dnf group install "Development Tools"
-sudo dnf install wget curl tmux make cmake meld tree nano vim emacs
+sudo dnf install wget curl tmux make cmake meld tree nano vim emacs unzip zip git wget curl
 ```
 
+## Repositorios y estructura de los talleres
 
+Una vez instalado todas las herramientas según su plataforma (Sistema Operativo y Hardware), realize los siguiente pasos:
+
+### 1. Crear un repositorio para el curso
+
+Abra su plataforma de control de versiones favorita: [GitHub](https://github.com/), [GitLab](https://gitlab.com/), [BitBucket](https://bitbucket.org/product/). Y cree un repositorio **privado**, con un nombre con el siguiente formato: `<eafit-email-name>-so-c2661-4677-seguimiento`, donde `<eafit-email-name>` es el nombre del correo electrónico (`fcardona@eafit.edu.co`), es `fcardona`. En mi caso personal sería `fcardona-so-c2661-4677-seguimiento`, este será `<repositorio-seguimiento>`
+
+Una vez creado invite al profesor busque la cuenta `fcardonaEAFIT` y invítelo como colaborador (no como administrador o semejante).
+
+### 2. Crear estructura de directorios
+
+Cree una copia local del repositorio en su máquina.
+
+```bash
+git clone <repositorio-enlace>
+```
+
+Ir al directorio
+
+```
+cd <repositorio-enlace>
+```
+
+En ese directorio cree un carpeta (*folder* o directorio) con el nombre de talleres.
+
+```
+mkdir talleres
+```
+
+### 3. Poblar la estructura de directorios y el repositorio
+
+Abra el directorio
+
+```
+cd talleres
+```
+
+Descargue el taller en formato zip, descomprimalo.
+
+```
+wget https://github.com/jfcmacro/TallerSO_01/archive/refs/heads/master.zip
+unzip master.zip
+rm master.zip
+```
+
+Mire la estructura actual
+
+```
+tree .
+```
+
+Entre al directorio del taller
+
+```
+cd TallerSO_01-master
+```
+
+Adicione los ficheros
+
+```bash
+git add README.md .gitignore
+```
+
+Adicione los ficheros del proyecto, esto adiciona todos ficheros del taller.
+
+```bash
+find . -name *.c -exec git add {} \;
+```
+
+Acometa (*commit*) el proyecto.
+
+```
+git commit -m "Iniciando el Taller 01"
+git push
+```
+
+## El mundo según C, C++ y otros
+
+### Introducción
 
 Programar consiste en crear una implementación de una solución, lo suficientemente genérica para que a través de parámetros, se puede cambiar el comportamiento de dicha solución, sin tener que cambiar el código.
 
@@ -116,7 +228,7 @@ En la programación actual, se requiere construir programas que implementen la s
 
 Vamos a ver como hacerlo a través de Linux y Windows.
 
-## Línea de Argumentos. En los programas de terminal más común de cambiar
+### Línea de Argumentos. En los programas de terminal más común de cambiar
 el comportamiento de un programa es a través de la línea de comandos.
 
 
