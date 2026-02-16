@@ -5,7 +5,6 @@
 1. Instalación de las herramientas básicas para el curso
 2. Repositorio y estructura de los talleres
 3. El mundo según C, C++ y otros
-4. Interprete de comandos (`bash`)
 
 ## Instalación de las herramientas básicas para el curso
 
@@ -17,10 +16,10 @@ Tenga en cuenta su sistema operativo e instale las herramientas correspondientes
 
 El WSL es un sistema que permite instalar una distribución de linux en Windows.  Esta parte del taller le pedirá instalar una en su máquina. Tenga en cuenta lo siguiente:
 
-* Instale la versión por omisión (**default**) [Ubuntu](https://ubuntu.com/). 
+* Instale la versión por omisión (**default**) Ubuntu. 
 * [Pasos para instalar WSL](https://learn.microsoft.com/es-es/windows/wsl/install)
 
-Abra una sesión invocando a `WSL` en la barra de inicio.
+Una vez instalado WSL abra una sesión invocando a `WSL` en la barra de inicio.
 
 Instale el ambiente de desarrollo, la siguiente son las instrucciones del interpretador de comandos:
 
