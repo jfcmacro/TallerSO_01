@@ -1,4 +1,4 @@
-# Sistemas Operativos - Taller 01 - El mundo según C, C++ y otros
+# Sistemas Operativos - Taller 01 - El mundo según C, C++, Bash y otros ...
 
 ## Agenda
 
@@ -34,7 +34,7 @@ Una vez instalado instale los editores.
 sudo apt install nano emacs vim
 ```
 
-Algunos tutoriales sobre estos editores (Por Dios que sepan seleccionar el mejor):
+Algunos tutoriales sobre estos editores (Por Dios, que les ayuda a seleccionar el mejor):
 
 * [Nano](https://linuxize.com/post/how-to-use-nano-text-editor/)
 * [VIM](https://www.freecodecamp.org/espanol/news/como-usar-vim-tutorial-para-principiantes/)
@@ -218,6 +218,10 @@ git commit -m "Iniciando el Taller 01"
 git push
 ```
 
+## Ejercicios
+
+Para cada ejercicio tenga en cuenta que los ejercicios están diseñados para Windows o para Linux (MacOS o WSL), en el caso de Windows abra una terminal de `msys2`, en Linux (y otros) abra una terminal del `shell` favorito.
+
 ## El mundo según C, C++ y otros
 
 ### Introducción
@@ -234,16 +238,72 @@ Vamos a ver como hacerlo a través de Linux y Windows y en el camino como aprend
 
 #### Linux
 
-El comportamiento de un programa es a través de la línea de comandos.
+Un programa tiene un comportamiento definido por su código, este comportamiento puede cambiar con la iteración del mundo exterior, ya sea a través de las operaciones de entrada y salida, línea de argumentos y variables de ambiente.
+
+La línea de argumentos permite pasar elementos que cambien el comportamiento de un programa, por ejemplo algunos programas puede recibir una argumento que indique el orden que van a ser ordenado los resultados. 
+
+##### [Línea de Argumentos](./argumentos/linux/argumentos.c)
+
+Se encarga de mostrar como un programa recibe argumentos del mundo exterior, a través del `shell` y mostrar cada uno de los argumentos.
+
+**Ejercicio 1**. [Compilar `argumentos.c`]. El compilador instalado es `gcc`.
+
+La siguiente líneas nos permite ejecutar dos tareas. Mover a un directorio (`cd`) y compilar un programa (`gcc`). Ejecute la siguiente líneas en la terminal:
+
+```bash
+cd argumentos/linux/
+gcc argumentos.c
+```
+
+El primero (`cd`) es un **inner command**, este es ejecutado internamente por el `shell` (`bash`), no es programa en ejecución. Este comando recibe un argumento el nombre de la ruta del directorio de trabajo (**pathname**).
+
+El segundo (`gcc`) es la ejecución de programa con un argumento `argumentos.c`, este es un programa real:
+
+```bash
+which gcc
+```
+
+Muestra la ruta donde está ubicado el ejecutable `gcc`.
+
+La ejecución anterior generar un ejecutable llamado `a.out`. Para ejecutarlo:
+
+```bash
+./a.out
+```
+
+Esto muestra que el programa recibe un solo argumento que es el nombre el programa que se esta ejecutando.
+
+Ejecute con varios argumentos:
+
+```bash
+./a.out arg1 arg2 arg3 "varios argumentos" /tmp/fichero ../fichero2
+```
+
+Así se pueden pasar varios argumentos al programa y cada argumento puede ser utilizado para definir un comando, una acción, un fichero (o ficheros), todo dependerá de la forma que el programado defina el comportamiento del comando.
+
+**Ejercicio 2.** [Dar un nombre al ejecutable]. El nombre `a.out` puede ser confuso para determinar cual es el propósito de un programa, algunos ejecutables tiene nombres que sugiere su tarea por ejemplo: `sort` un programa que ordena; `ls` listar directorios, `pwd` (Process Working Directory). Nosotros podemos nombrar los ejecutables a traves de una opción (línea de argumento del compilador).
+
+```bash
+gcc -o argumentos argumentos.c
+```
+
+Observe el fichero creado:
+
+```bash
+ls -l
+```
+
+Observe que se ha creado un fichero llamado argumentos.
+
+##### [Manejo de argumentos](./argumentos/linux/manejo_argumentos.c)
+
+Los argumentos puede ser opcionales, obligatorios, tener valor. El manejo manual de la línea de argumentos puede se un poco complicado, para ello existe una biblioteca (ustedes llaman librería) que se encarga de procesar la línea de argumentos, esta es la biblioteca [`getpopt`](https://man7.org/linux/man-pages/man3/getopt.3.html).
 
 
-* [Linea de Argumentos](./argumentos/linux/argumentos.c): Se encarga de mostrar como un programa recibe argumentos del mundo exterior, a través del Shell y de la línea de comandos.
-* [Manejo de argumentos](./argumentos/linux/manejo_argumentos.c): Los argumentos puede ser opcionales o tener variables, hacerlo de manera manual es un poco complicado, vamos a utilizar una biblioteca `getpopt`.
 
 #### Windows
 
 El comportamiento de un programa es a través de la línea de comandos.
-
 
 * [Linea de Argumentos](./argumentos/windows/argumentos.c): Se encarga de mostrar como un programa recibe argumentos del mundo exterior, a través del Shell y de la línea de comandos.
 * [Manejo de argumentos](./argumentos/windows/manejo_argumentos.c): Los argumentos puede ser opcionales o tener variables, hacerlo de manera manual es un poco complicado, vamos a utilizar una biblioteca `getpopt`.
