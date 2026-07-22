@@ -281,6 +281,10 @@ Ejecute con varios argumentos:
 
 Así se pueden pasar varios argumentos al programa y cada argumento puede ser utilizado para definir un comando, una acción, un fichero (o ficheros), todo dependerá de la forma que el programado defina el comportamiento del comando.
 
+##### [Manejo de argumentos](./argumentos/linux/manejo_argumentos.c)
+
+Los argumentos puede ser opcionales, obligatorios, tener valor. El manejo manual de la línea de argumentos puede se un poco complicado, para ello existe una biblioteca (ustedes llaman librería) que se encarga de procesar la línea de argumentos, esta es la biblioteca [`getpopt`](https://man7.org/linux/man-pages/man3/getopt.3.html).
+
 **Ejercicio 2.** [Dar un nombre al ejecutable]. El nombre `a.out` puede ser confuso para determinar cual es el propósito de un programa, algunos ejecutables tiene nombres que sugiere su tarea por ejemplo: `sort` un programa que ordena; `ls` listar directorios, `pwd` (Process Working Directory). Nosotros podemos nombrar los ejecutables a traves de una opción (línea de argumento del compilador).
 
 ```bash
@@ -293,13 +297,22 @@ Observe el fichero creado:
 ls -l
 ```
 
-Observe que se ha creado un fichero llamado argumentos.
+Se ha creado un fichero llamado `argumentos`.
 
-##### [Manejo de argumentos](./argumentos/linux/manejo_argumentos.c)
+Observe que el programa es capaz de procesar dos conjuntos de argumentos:
 
-Los argumentos puede ser opcionales, obligatorios, tener valor. El manejo manual de la línea de argumentos puede se un poco complicado, para ello existe una biblioteca (ustedes llaman librería) que se encarga de procesar la línea de argumentos, esta es la biblioteca [`getpopt`](https://man7.org/linux/man-pages/man3/getopt.3.html).
+```bash
+./manejo_argumentos -h
+```
 
+Esto muestra dos conjuntos: el primero `-h` y el segundo `-c -g -p <nombre_impresora>`. Son dos conjuntos disyuntos, esto se logra a través de la programación. Ya vimos como funciona el primer conjunto. El segundo puede aceptar cero,  uno, dos o tres argumentos:
 
+```bash
+./manejo_argumento
+./manejo_argumento -c
+./manejo_argumento -c -g
+./manejo_argumento -g -c -p "impresora"
+```
 
 #### Windows
 
