@@ -147,7 +147,7 @@ Una vez instalado todas las herramientas según su plataforma (Sistema Operativo
 
 ### 1. Crear un repositorio para el curso
 
-Abra su plataforma de control de versiones favorita: [GitHub](https://github.com/), [GitLab](https://gitlab.com/), [BitBucket](https://bitbucket.org/product/). Y cree un repositorio **privado**, con un nombre con el siguiente formato: `<eafit-email-name>-so-c2661-4677-seguimiento`, donde `<eafit-email-name>` es el nombre del correo electrónico (`fcardona@eafit.edu.co`), es `fcardona`. En mi caso personal sería `fcardona-so-c2661-4677-seguimiento`, este será `<repositorio-seguimiento>`
+Abra su plataforma de control de versiones favorita: [GitHub](https://github.com/), [GitLab](https://gitlab.com/), [BitBucket](https://bitbucket.org/product/). Y cree un repositorio **privado**, con un nombre con el siguiente formato: `<eafit-email-name>-so-c2666-4231-seguimiento`, donde `<eafit-email-name>` es el nombre del correo electrónico (`fcardona@eafit.edu.co`), es `fcardona`. En mi caso personal sería `fcardona-so-c2666-4231-seguimiento`, este será `<repositorio-seguimiento>`
 
 Una vez creado invite al profesor busque la cuenta `fcardonaEAFIT` y invítelo como colaborador (no como administrador o semejante).
 
@@ -281,10 +281,6 @@ Ejecute con varios argumentos:
 
 Así se pueden pasar varios argumentos al programa y cada argumento puede ser utilizado para definir un comando, una acción, un fichero (o ficheros), todo dependerá de la forma que el programado defina el comportamiento del comando.
 
-##### [Manejo de argumentos](./argumentos/linux/manejo_argumentos.c)
-
-Los argumentos puede ser opcionales, obligatorios, tener valor. El manejo manual de la línea de argumentos puede se un poco complicado, para ello existe una biblioteca (ustedes llaman librería) que se encarga de procesar la línea de argumentos, esta es la biblioteca [`getpopt`](https://man7.org/linux/man-pages/man3/getopt.3.html).
-
 **Ejercicio 2.** [Dar un nombre al ejecutable]. El nombre `a.out` puede ser confuso para determinar cual es el propósito de un programa, algunos ejecutables tiene nombres que sugiere su tarea por ejemplo: `sort` un programa que ordena; `ls` listar directorios, `pwd` (Process Working Directory). Nosotros podemos nombrar los ejecutables a traves de una opción (línea de argumento del compilador).
 
 ```bash
@@ -298,6 +294,10 @@ ls -l
 ```
 
 Se ha creado un fichero llamado `argumentos`.
+
+##### [Manejo de argumentos](./argumentos/linux/manejo_argumentos.c)
+
+Los argumentos puede ser opcionales, obligatorios, tener valor. El manejo manual de la línea de argumentos puede se un poco complicado, para ello existe una biblioteca (ustedes llaman librería) que se encarga de procesar la línea de argumentos, esta es la biblioteca [`getpopt`](https://man7.org/linux/man-pages/man3/getopt.3.html).
 
 Observe que el programa es capaz de procesar dos conjuntos de argumentos:
 
@@ -314,12 +314,77 @@ Esto muestra dos conjuntos: el primero `-h` y el segundo `-c -g -p <nombre_impre
 ./manejo_argumento -g -c -p "impresora"
 ```
 
+**tarea 1.** "Saludo o despedida" [fichero: "saludo.c", conjunto argumentos 1: "[-s|-d] <nombre>", conjunto argumentos 2: "-h"]. El programa `saludo` en el primer conjunto recibe un nombre y saluda a dicho nombre, si la opción `-d` esta activa se despide de la persona.
+
+[Ejecución]
+```bash
+./saludo -h
+```
+[Salida]
+```bash
+Uso: ./salida -h
+     ./salida [-s|-d] <nombre>
+```
+
+[Ejecución]
+```bash
+./saludo juan
+```
+[Salida]
+```bash
+Hola juan
+```
+
+[Ejecución]
+```bash
+./saludo -s juan
+```
+[Salida]
+```bash
+Hola juan
+```
+
+[Ejecución]
+```bash
+./saludo -d juan
+```
+[Salida]
+```bash
+Adios juan
+```
+
 #### Windows
 
 El comportamiento de un programa es a través de la línea de comandos.
 
-* [Linea de Argumentos](./argumentos/windows/argumentos.c): Se encarga de mostrar como un programa recibe argumentos del mundo exterior, a través del Shell y de la línea de comandos.
-* [Manejo de argumentos](./argumentos/windows/manejo_argumentos.c): Los argumentos puede ser opcionales o tener variables, hacerlo de manera manual es un poco complicado, vamos a utilizar una biblioteca `getpopt`.
+##### [Linea de Argumentos](./argumentos/windows/argumentos.c)
+
+Se encarga de mostrar como un programa recibe argumentos del mundo exterior, a través del Shell y de la línea de comandos.
+
+**Ejercicio 3**. [Compilar `argumentos.c`]. El compilador instalado es `gcc`.
+
+```bash
+cd argumentos/windows
+gcc -o argumentos argumentos.c
+```
+
+Observe el ejecutable:
+
+```bash
+ls
+```
+
+Ejecutelo:
+
+```bash
+./argumentos.exe
+```
+
+##### [Manejo de argumentos](./argumentos/windows/manejo_argumentos.c)
+
+Los argumentos puede ser opcionales o tener variables, hacerlo de manera manual es un poco complicado, vamos a utilizar una biblioteca `getpopt`.
+
+**Ejercicio 4**. [Compilar y ejecutar]. Modifique el programa para que acepte las mismas opciones que su primo en linux.
 
 ### Variables de ambiente
 
@@ -335,7 +400,3 @@ El comportamiento de un programa puede alterarse a través de las variables de a
 * [Mostrar las variables de ambiente](./ambiente/windows/ambiente.c): Listar todas las variables de ambiente.
 * [Mostrar una variable de ambiente en particular](./ambiente/windows/variable.c): Mostrar una variable particular.
 
-## Interprete de comandos (`bash`)
-
-* Scripts
-* Proyecto: `downproglab.sh`

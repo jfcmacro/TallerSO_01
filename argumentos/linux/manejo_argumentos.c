@@ -16,7 +16,7 @@ main(int argc, char *argv[]) {
    * Verificando los argumentos
    */
 
-  while ((option = getopt(argc, argv, "cghp:")) != -1) {
+  while ((option = getopt(argc, argv, ":cghp:")) != -1) {
 
     switch (option) {      
     case 'c':
@@ -35,6 +35,7 @@ main(int argc, char *argv[]) {
       fprintf(stdout, "Activada la impresora: %s\n", optarg);
       break;
 
+    case '?':
     default:
       uso(argv[0], 1);
       break;
@@ -46,6 +47,6 @@ main(int argc, char *argv[]) {
 
 void uso(const char* nombre_programa, int valor_retorno) {
   fprintf(stdout, "Uso: %s -h\n", nombre_programa);
-  fprintf(stdout, "     %s [-c|-g|-p <nombre_impresora>]...\n", nombre_programa);
+  fprintf(stdout, "     %s [-c] [-g] [-p <nombre_impresora>]\n", nombre_programa);
   _exit(valor_retorno);
 }

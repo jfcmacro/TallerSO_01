@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
-#includ
+#include <Windows.h>
 
 int
 main(int argc, char *argv[]) {
@@ -18,16 +18,16 @@ main(int argc, char *argv[]) {
   while ((option = getopt(argc, argv, "p:gc")) != -1) {
 
     switch (option) {
-    case 'p':
-      fprintf(stdout, "Activada la impresora: %s\n", optarg);
+    case 'c':
+      fprintf(stdout, "Entorno de consola activado\n");
       break;
-      
+            
     case 'g':
       fprintf(stdout, "Entorno gráfico activo\n");
       break;
 
-    case 'c':
-      fprintf(stdout, "Entorno de consola activado\n");
+    case 'p':
+      fprintf(stdout, "Activada la impresora: %s\n", optarg);
       break;
 
     default:
